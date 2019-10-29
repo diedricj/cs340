@@ -43,13 +43,17 @@
          </ul>
       </nav>
       <main>
-         <article class="white-bg boxshadow">
-           <h2> Login </h2>
-           <input type="text" id="loginInput" placeholder="Discord Name.."> <br>
-           <input type="text" id="loginInput" placeholder="Password.."> <br>
-           <button class="button"> Log In </button>
-         </article>
-         </footer>
-      </main>
-   </body>
-</html>
+         <article >
+           <h2>Add Account</h2>
+        <form style="padding:40px" class="black-bg white boxshadow radius" action="/account.html">
+  Account Name:<br>
+  <input type="text" name="firstname" value=""><br><br>
+  Team:<br>
+
+  <input type="radio" name="gender" value="male" checked> Team 1<br>
+  <input type="radio" name="gender" value="female"> Team 2<br>
+  <input type="radio" name="gender" value="other"> Team 3<br>
+  <input type="radio" name="gender" value="other"> Team 4<br> <br>
+  <input type="submit" value="Submit">
+</form>
+      </article>

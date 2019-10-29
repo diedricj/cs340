@@ -1,6 +1,6 @@
 /*LAYOUT*/
 article, aside, footer {
-   margin:5%; 
+   margin:5%;
    padding:2%;
    }
 
@@ -13,6 +13,73 @@ header {
 
 header p{
   font-size: 200%
+}
+
+#offersInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+h2{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 body {
@@ -52,9 +119,9 @@ fieldset {
   position:relative;
   }
 legend {}
-label input[type="checkbox"], 
+label input[type="checkbox"],
 label input[type="radio"] {
-  display:inline!important; 
+  display:inline!important;
   }
 label {
  display:block;
@@ -70,20 +137,20 @@ textarea {
   font-family: 'Noto Sans', sans-serif;
   height:100px;
   padding:2%;
-  width:95%; 
+  width:95%;
   }
 
-input:focus, 
+input:focus,
 textarea:focus {
-    background-color: lightgray; 
+    background-color: lightgray;
     outline:white;
     border:2px solid white;
     }
 
-input:required, 
+input:required,
 textarea:required,
 select:required {
-    border:2px solid green; 
+    border:2px solid green;
 }
 
 label.required:after {content:" *";}
@@ -126,8 +193,6 @@ label.required:after {content:" *";}
   color:#D7F2F5
 }
 
-
-
 .white-bg {background-color:rgba(215,242,245,.85)}
 .black-bg {background-color:rgba(24,30,36,.85)}
 .darkbrown-bg{
@@ -168,7 +233,7 @@ nav a {
     display:block;
     font-size:150%;
     margin:2%;
-    padding:2%; 
+    padding:2%;
     text-decoration:none;
 }
 
@@ -279,12 +344,12 @@ nav a {
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .4}
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .4}
   to {opacity: 1}
 }
 
@@ -299,7 +364,7 @@ th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: grey;
   color: white;
 }
 
@@ -316,11 +381,9 @@ html {
 
 /*videos*/
 video, iframe, object, embed {
- width:80%;  
- height:320px; 
+ width:80%;
+ height:320px;
 }
-
-
 
 iframe {
  border:4px solid #ddd;
@@ -328,8 +391,8 @@ iframe {
 }
 
 figure {
-  margin:0 0 2% 0; 
-  padding:2%; 
+  margin:0 0 2% 0;
+  padding:2%;
 }
 
 
@@ -339,16 +402,7 @@ figure {
 .material-icons.md-36 {font-size: 36px;}
 .material-icons.md-48 {font-size: 48px;}
 
-/*EMBELLISHMENT*/
-.move {
-   -webkit-backface-visibility: hidden;
-   -webkit-transform: translateZ(0);
-   -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-     -ms-transition: all 1s ease-in-out;
-      -o-transition: all 1s ease-in-out;
-         transition: all 1s ease-in-out;
-}
+
 
 nav#articles a i:hover {
   -webkit-transform: scale(1.5) translateY(5px);
@@ -364,19 +418,19 @@ nav#articles a i:hover {
   display:inline-block;
   }
   #articles a {
-    min-width:auto; 
-    max-width:220px; 
+    min-width:auto;
+    max-width:220px;
     padding:10px;
   }
 video,  iframe, object, embed {
-    height:400px; 
+    height:400px;
   }
 .alignleft   {float:left; margin:0 2% 0 0;}
 .aligncenter {text-align:center; margin:0 auto;}
 .alignmiddle {
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform:translate(-50%,-50%);
 }
 .alignright  {float:right; margin:0 0 0 2%;}
@@ -385,7 +439,7 @@ video,  iframe, object, embed {
 .clearleft   {clear:left;}
  .fifty  {width:50%;}
 .thirty {width:30%;}
-  
+
   body {
   background-attachment: fixed;
   background-image: url(photos/river-photo-640.jpg);
@@ -402,12 +456,12 @@ video,  iframe, object, embed {
   display:inline-block;
   }
   #articles a {
-    min-width:auto; 
-    max-width:220px; 
+    min-width:auto;
+    max-width:220px;
     padding:10px;
   }
 video,  iframe, object, embed {
-    height:400px;  
+    height:400px;
     }
   body {
   background-attachment: fixed;
@@ -416,6 +470,3 @@ video,  iframe, object, embed {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-
-
