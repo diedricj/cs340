@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- IE conditional statements -->
+<html lang="en">
+<head>
+  <?php /*variables */     
+    $projectname="Learn To Throw";     
+    $description="A pottery blog for beginner wheel throwers";
+    $sitepath="http://people.oregonstate.edu/~diedricj/pottery/";    
+    $author="Josh Diedrich";
+  ?>
+  
+  <!-- meta charset -->
+  
+  <title><?php echo $author.", ".$description.", ".$projectname; ?></title><!-- title tag -->
+  
+  <link rel="stylesheet" href="<?php echo $sitepath;?>style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Noto+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  
+  
+  <meta charset="utf-8" />
+  <meta name="description" content="<?php echo $description; ?>" />
+  <meta name="author" content="<?php echo $author; ?>" />
+  <meta name="keywords" content="Pottery, Pottery blog, Pottery blog plan, plan for pottery blog, beginner pottery blog, pottery for beginners, learn to wheel throw, wheel throwing for starters, buy pottery, buy clay, best pottery clay, find cheap pottery"/>
+  <meta name="robots" content="noindex,nofollow,noarchive" /><!-- meta tags -->
+  
+  <!-- fonts -->
+  <!-- favicons -->
+  <!-- scripts -->
+</head>
+<body>
+  <header>
+    <img src="<?php echo $sitepath;?>photos/symbol.png"
+     alt="Wheel Throwing"
+     title="<?php echo $slogan; ?>"
+     id="symbol"
+     class="drop-shadow move"
+     />
+      <img src="<?php echo $sitepath;?>photos/wheel.png"
+     alt="Wheel Throwing"
+     title="<?php echo $slogan; ?>"
+     id="wheel"
+     class="drop-shadow move"
+     />
+     <img src="<?php echo $sitepath;?>photos/throwing.png"
+     alt="Wheel Throwing"
+     title="<?php echo $slogan; ?>"
+     id="Throwing"
+     class="drop-shadow move"
+     />
+      <img src="<?php echo $sitepath;?>photos/wheel-throwing-symbol.png"
+     alt="Wheel Throwing"
+     title="<?php echo $slogan; ?>"
+     id="combo"
+     class="drop-shadow move"
+     />
+    <p class="lightbrown tshadow"><?php echo $description; ?></p>
+  </header>
+  <nav id="articles">
+    <ul>
+     <li>
+       <a class="white-bg darkbrown boxshadow" href="<?php echo $sitepath; ?>">
+         <i class="material-icons md-36 move">home</i>
+         Home
+       </a>
+     </li>
+     <li>
+       <a class="darkbrown-bg lightbrown boxshadow" href="<?php echo $sitepath; ?>gallery/index.php">
+         <i class="material-icons md-36 move">picture_in_picture</i>
+         Gallery
+       </a>
+     </li>
+     <li>
+       <a class="green-bg white boxshadow" href="<?php echo $sitepath; ?>videos/index.php">
+         <i class="material-icons md-36 move">shop</i>
+         Videos
+       </a>
+     </li>
+     <li>
+       <a class="black-bg white boxshadow" href="<?php echo $sitepath; ?>clay/index.php">
+         <i class="material-icons md-36 move">landscape</i>
+         Clay
+       </a>
+     </li>
+     <!--<li><a class="lightbrown-bg black boxshadow" href="<?php echo $sitepath; ?>topic-folder-e/index.php">Menu item</a></li> -->
+    </ul>
+  </nav>
+  <main>
+    <article class="white-bg boxshadow">
