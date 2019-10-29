@@ -1,72 +1,105 @@
 <!doctype html>
 <html>
-   <head>
-      <link href="main.css" rel="stylesheet"  />
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-     <script src="http://sdks.shopifycdn.com/buy-button/0.9.1/buybutton.js"></script>
-     <script src="http://sdks.shopifycdn.com/js-buy-sdk/v2/latest/index.umd.min.js"></script>
-     <script type="text/javascript" src="funcs.js"></script>
-     
-     <title>This is the title of the webpage!</title>
-   </head>
-   <body>
-      <div id="title"> 
-     <h1>
-        Build-a-Rack
-     </h1>
-     </div>
-       <div class="row shadow">
-         <div class="columnbig">
-           <div id="figs">
-            
-                 <img id="skileft" class="dark" src="ski.png"/>
-              
-                 <img id="surfleft" class="dark" src="surf.png"/>
-              
-                 <img id="bikeleft" class="dark" src="bike.png"/>
-              
-                 <img id="kayakleft" class="dark" src="kayak.png"/>
-              
-                 <img id="baseleft" class="bright" src="base.png"/>
-   
-           </div>
-         </div>
-         <div class="columnsmall">
-           <h2>
-             Click To Select
-           </h2>
-           <div id = "two">
-            <figure>
-              <img onclick="select(this)" id="skiright" class="dark" src="ski2.png"/>
-              <figcaption> More Info</figcaption>
-             </figure>
-            <figure>
-              <img onclick="select(this)" id="surfright" class="dark" src="surf2.png"/>
-              <figcaption> More Info</figcaption>
-             </figure>
-           </div>
-           <div id = "two">
-            <figure>
-              <img onclick="select(this)" id="bikeright" class="dark" src="http://www.spicysports.com/wp-content/uploads/2015/08/snowbus-logo-square.png"/>
-              <figcaption> More Info</figcaption>
-             </figure>
-            <figure  >
-              <img onclick="select(this)" id="kayakright" class="dark" src="http://www.spicysports.com/wp-content/uploads/2015/08/snowbus-logo-square.png"/>
-              <figcaption> More Info</figcaption>
-             </figure>
-           </div>
-           <figure  >
-              <img onclick="select(this)" id="baseright" class="bright" src="http://www.spicysports.com/wp-content/uploads/2015/08/snowbus-logo-square.png"/>
-              <figcaption> More Info</figcaption>
-           </figure>
-             <div id="checkout" class="button_cont" align="center"><a id="checkoutlink" class="example_a" href="add-website-here" target="_blank" rel="nofollow noopener">Buy Now</a></div>
-          </div>
-     </div>
-    </div>
-  <div class="row lightshadow">
-         <p id="total" class="smalltext">
-             <span style="color:white; font-family: Arial, Helvetica, sans-serif;">Price: </span><span id="price" style="color: red; font-size: 1.5em; font-weight:bold; font-family: Arial, Helvetica, sans-serif;"> $0</span>
-         </p>          
-  </div>
-  </body>
-</html>
+<head>
+
+
+  <!-- meta charset -->
+
+  <title>PokeTrade</title><!-- title tag -->
+
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Noto+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+
+  <meta charset="utf-8" />
+
+  <!-- fonts -->
+  <!-- favicons -->
+  <!-- scripts -->
+</head>
+
+<body>
+  <header>
+    <h1> PokeTrader
+  </header>
+  <nav id="articles">
+    <ul>
+     <li>
+       <a class="white-bg darkbrown boxshadow" href="<?php echo $sitepath; ?>">
+         <i class="material-icons md-36 move">home</i>
+         Home
+       </a>
+     </li>
+     <li>
+       <a class="darkbrown-bg lightbrown boxshadow" href="<?php echo $sitepath; ?>gallery/index.php">
+         <i class="material-icons md-36 move">Add Trade</i>
+         Gallery
+       </a>
+     </li>
+     <li>
+       <a class="green-bg white boxshadow" href="<?php echo $sitepath; ?>videos/index.php">
+         <i class="material-icons md-36 move">Offering</i>
+         Videos
+       </a>
+     </li>
+     <li>
+       <a class="black-bg white boxshadow" href="<?php echo $sitepath; ?>clay/index.php">
+         <i class="material-icons md-36 move">Accepting</i>
+         Clay
+       </a>
+     </li>
+     <!--<li><a class="lightbrown-bg black boxshadow" href="<?php echo $sitepath; ?>topic-folder-e/index.php">Menu item</a></li> -->
+    </ul>
+  </nav>
+  <main>
+    <article class="white-bg boxshadow">
+      <h2>All About Clay!</h2>
+     <table>
+       <thead>
+          <tr>
+              <th>Clay</th>
+              <th>Origin</th>
+              <th>Uses</th>
+              <th>Color</th>
+              <th>Transparency</th>
+          </tr>
+      </thead>
+       <tbody>
+           <tr>
+               <th>Porcelain</th>
+               <td>Porcelain originated from China, and is a combination of clay and flint, meant to have small particles and a very small particle size</td>
+               <td>Porcelain is used to create very strong pieces that can be either painted or glazed</td>
+               <td>Porcelain is very popular for its white color in appearance that can be achieved with no glaze</td>
+               <td>Porcelain is also very popular for its transparency.  This can be achieved when porcelain is thrown with very thin walls, and lets light shine through the small particle size.</td>
+           </tr>
+           <tr>
+               <th>Rocky Road</th>
+               <td>Rocky Road is a general name for mixed clay.  It can come from a variety of places.  It usually has a larger particle size and is very industrial.</td>
+               <td>Rocky Road is relatively cheap and can be used for learning.  It is a utility clay, while it is not excellent in any category, it can be used for almost anything.</td>
+               <td>Rocky Road is typically a light gray color, and is usually applied a glazing to add color after firing.</td>
+               <td>Rocky Road is not transparent.</td>
+           </tr>
+           <tr>
+               <th>White Salmon</th>
+               <td>White Salmon is a mix of normal clay that is white in color.  It has thin clay particles, and is meant to be a cheaper utility clay that resembles Porcelain.</td>
+               <td>White Salmon is easier to throw with than porcelain clay, because it tends to absorb less water and maintain structure, but can still resemble porcelain in many ways.</td>
+               <td>White Salmon has a white-ish pink color, that mimics that of Porcelain's whiteness.</td>
+               <td>White Salmon and very thin spots in the clay can be transparent, but usually this is not achievable.</td>
+           </tr>
+       </tbody>
+     </table>
+
+  </article>
+
+
+
+
+
+
+</footer>
+
+    </main>
+    <footer class="black-bg white boxshadow radius">
+    </body>
+    </html>
