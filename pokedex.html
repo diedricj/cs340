@@ -71,8 +71,25 @@
 
          </div>
 
+         <div id="myModal2" class="modal2">
+
+           <!-- Modal content -->
+           <div class="modal-content">
+             <span class="close">&times;</span>
+             <form>
+               Pokemon Name:<br>
+               <input type="text" name="firstname" value=""><br><br>
+               <button class="button"> Confirm </button>
+               <button class="button"> Remove </button>
+             </form>
+           </div>
+
+         </div>
+
 
          <input type="text" id="offersInput" onkeyup="PokedexFilter()" placeholder="Search..">
+         <button class="button green-bg"> Search </button>
+
          <table id="PokedexTable">
             <thead>
                <tr>
@@ -85,17 +102,17 @@
                <tr>
                   <th>001</th>
                   <td>Bulbasaur</td>
-                <td><button class = "button"> Edit </button></td>
+                <td><button class = "button" onclick="edit()"> Edit </button></td>
                </tr>
                <tr>
                   <th>002</th>
                   <td>Ivysaur</td>
-                  <td><button class = "button"> Edit </button></td>
+                  <td><button class = "button" onclick="edit()"> Edit </button></td>
                </tr>
                <tr>
                   <th>003</th>
                   <td>Venusaur</td>
-                  <td><button class = "button"> Edit </button></td>
+                  <td><button class = "button" onclick="edit()"> Edit </button></td>
                </tr>
             </tbody>
          </table>
@@ -103,22 +120,37 @@
       </main>
 
       <script>
-      // Get the modal
       var modal = document.getElementById("myModal");
+      var modal2 = document.getElementById("myModal2");
+
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
+      var btn2 = document.getElementsByClassName("myBtns");
 
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
+      var span2 = document.getElementsByClassName("close2")[0];
+
 
       // When the user clicks the button, open the modal
       btn.onclick = function() {
         modal.style.display = "block";
       }
 
+      btn2.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      function edit() {
+        modal2.style.display = "block";
+      }
+
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
+        modal.style.display = "none";
+      }
+      span2.onclick = function() {
         modal.style.display = "none";
       }
 
@@ -126,16 +158,17 @@
       window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
+          modal2.style.display = "none";
         }
       }
 
 
-      function PokedexFilter() {
+      function offersFilter() {
         // Declare variables
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("PokedexInput");
+        input = document.getElementById("offersInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("PokedexTable");
+        table = document.getElementById("offersTable");
         tr = table.getElementsByTagName("tr");
 
         // Loop through all table rows, and hide those who don't match the search query
