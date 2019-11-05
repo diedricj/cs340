@@ -49,8 +49,8 @@
       </nav>
       <main>
          <article>
-         <h2>Pokedex</h2>
-         <button class="button green-bg" id="myBtn">New</button>
+         <h2>Users</h2>
+         <button class="button green-bg" id="myBtn">Add User</button>
 
          <div id="myModal" class="modal">
 
@@ -58,62 +58,117 @@
            <div class="modal-content">
              <span class="close">&times;</span>
              <form>
-               Pokemon Name:<br>
+               Trainer Name:<br>
                <input type="text" name="firstname" value=""><br><br>
+               Discord Name:<br>
+               <input type="text" name="firstname" value=""><br><br>
+
+               Team:<br>
+
+               <input type="radio" name="gender" value="male" checked> Team 1<br>
+               <input type="radio" name="gender" value="female"> Team 2<br>
+               <input type="radio" name="gender" value="other"> Team 3<br>
+               <input type="radio" name="gender" value="other"> Team 4<br> <br>
+
                <button class="button"> Submit </button>
              </form>
            </div>
 
          </div>
 
+         <div id="myModal2" class="modal2">
 
-         <input type="text" id="offersInput" onkeyup="PokedexFilter()" placeholder="Search..">
-         <table id="PokedexTable">
+           <!-- Modal content -->
+           <div class="modal-content">
+             <span class="close2">&times;</span>
+             <form>
+               Trainer Name:<br>
+               <input type="text" name="firstname" value=""><br><br>
+               Discord Name:<br>
+               <input type="text" name="firstname" value=""><br><br>
+
+               Team:<br>
+
+               <input type="radio" name="gender" value="male" checked> Team 1<br>
+               <input type="radio" name="gender" value="female"> Team 2<br>
+               <input type="radio" name="gender" value="other"> Team 3<br>
+               <input type="radio" name="gender" value="other"> Team 4<br> <br>
+
+               <button class="button"> Confirm </button>
+               <button class="button"> Remove User </button>
+             </form>
+           </div>
+
+         </div>
+
+
+         <input type="text" id="offersInput" onkeyup="offersFilter()" placeholder="Search..">
+         <table id="offersTable">
             <thead>
                <tr>
-                  <th>Pokedex ID</th>
-                  <th>Pokemon Name</th>
+                  <th>Discord Name</th>
+                  <th>Trainer Name</th>
+                  <th>Team Name</th>
                   <th>Edit</th>
                </tr>
             </thead>
             <tbody>
                <tr>
-                  <th>001</th>
-                  <td>Bulbasaur</td>
-                <td><button class = "button"> Edit </button></td>
+                  <th>Discord 1</th>
+                  <td>Trainer Name 1</td>
+                  <td>Team 1</td>
+                <td><button class = "button myBtns" onclick="edit()"> Edit </button></td>
                </tr>
                <tr>
-                  <th>002</th>
-                  <td>Ivysaur</td>
-                  <td><button class = "button"> Edit </button></td>
+                 <th>Discord 1</th>
+                 <td>Trainer Name 1</td>
+                 <td>Team 1</td>
+               <td><button class = "button myBtns" onclick="edit()"> Edit </button></td>
                </tr>
                <tr>
-                  <th>003</th>
-                  <td>Venusaur</td>
-                  <td><button class = "button"> Edit </button></td>
+                 <th>Discord 1</th>
+                 <td>Trainer Name 1</td>
+                 <td>Team 1</td>
+               <td><button class = "button myBtns" onclick="edit()"> Edit </button></td>
                </tr>
             </tbody>
          </table>
-       </article>
+         <article>
       </main>
 
       <script>
       // Get the modal
       var modal = document.getElementById("myModal");
+      var modal2 = document.getElementById("myModal2");
+
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
+      var btn2 = document.getElementsByClassName("myBtns");
 
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
+      var span2 = document.getElementsByClassName("close2")[0];
+
 
       // When the user clicks the button, open the modal
       btn.onclick = function() {
         modal.style.display = "block";
       }
 
+      btn2.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      function edit() {
+        modal2.style.display = "block";
+      }
+
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
+        modal.style.display = "none";
+      }
+      span2.onclick = function() {
         modal.style.display = "none";
       }
 
@@ -121,16 +176,17 @@
       window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
+          modal2.style.display = "none";
         }
       }
 
 
-      function PokedexFilter() {
+      function offersFilter() {
         // Declare variables
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("PokedexInput");
+        input = document.getElementById("offersInput");
         filter = input.value.toUpperCase();
-        table = document.getElementById("PokedexTable");
+        table = document.getElementById("offersTable");
         tr = table.getElementsByTagName("tr");
 
         // Loop through all table rows, and hide those who don't match the search query
