@@ -23,6 +23,7 @@ app.use('/offer', require('./offer.js'));
 app.use('/accept', require('./accept.js'));
 app.use('/teams', require('./teams.js'));
 app.use('/users', require('./users.js'));
+app.use('/discord', require('./discord.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){

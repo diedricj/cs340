@@ -1,0 +1,24 @@
+<form id="update-offer">
+  Pokemon Name: <br>
+  <input type="text" name="pokemon_name" value="{{offer.pokemon_name}}"><br><br>
+  Trainer Name:<br>
+  <input type="text" name="trainer_name" value="{{offer.trainer_name}}"><br><br>
+  Discord Name:<br>
+  <input type="text" name="discord_name" value="{{offer.discord_name}}"><br><br>
+
+  Team: <select name="team">
+     <option value="1">Mystic</option>
+     <option value="2">Valor</option>
+     <option value="3">Instinct</option>
+  </select><br> <br>
+  Shiny: <select name="shiny">
+     <option value="1">Yes</option>
+     <option value="0">No</option>
+  </select><br> <br>
+  Regional: <select name="regional">
+     <option value="1">Yes</option>
+     <option value="0">No</option>
+  </select><br> <br>
+
+  <button onclick="updateOffer({{offer.pokemon_id}}, {{offer.trainer_id}})" class="button"> Submit </button>
+</form>
