@@ -13,45 +13,6 @@
       <!-- scripts -->
    </head>
    <body>
-      <header>
-         <h1>
-         PokeTrader
-      </header>
-      <nav id="articles">
-         <ul>
-           <li>
-              <a class="white-bg darkbrown boxshadow" href="/">
-              Home
-              </a>
-           </li>
-           <li>
-              <a class="green-bg white boxshadow" href="offer">
-              Offering
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="accept">
-              Accepting
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="users">
-              Users
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="pokedex">
-              Pokedex
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="teams">
-              Teams
-              </a>
-           </li>
-            <!--<li><a class="lightbrown-bg black boxshadow" href="<?php echo $sitepath; ?>topic-folder-e/index.php">Menu item</a></li> -->
-         </ul>
-      </nav>
       <main>
          <article>
          <h2>Pokedex</h2>
@@ -63,19 +24,21 @@
            <div class="modal-content">
              <span class="close">&times;</span>
              <form action="/pokedex" method="post">
+               Pokedex ID:<br>
+               <input type="int" name="dex_id" value=""><br><br>
                Pokemon Name:<br>
                <input type="text" name="pokemon_name" value=""><br><br>
                Shiny: <select name="shiny">
-                  <option value="1">Yes</option>
                   <option value="0">No</option>
+                  <option value="1">Yes</option>
                </select><br> <br>
                Regional: <select name="regional">
-                  <option value="1">Yes</option>
                   <option value="0">No</option>
+                  <option value="1">Yes</option>                 
                </select><br> <br>
                Special: <select name="special">
-                  <option value="1">Yes</option>
                   <option value="0">No</option>
+                  <option value="1">Yes</option>
                </select><br> <br>
                <button class="button"> Submit </button>
              </form>
@@ -118,12 +81,17 @@
                {{#each pokemon}}
                <tr>
                  <td>{{id}}</td>
+                 <td>{{dex_id}}</td>
                  <td>{{pokemon_name}}</td>
                  <td>{{regional}}</td>
                  <td>{{shiny}}</td>
                  <td>{{special}}</td>
                  <td><a href="/pokedex/{{id}}" >edit</a></td>
-                 <td><button onclick="deletePokemon({{id}})">delete</button>
+                 <td><form action="#" method="POST">
+                        <input type="hidden" name="remove_id" value="{{this.id}}">
+                        <button type="submit" formaction="/pokedex/remove">Remove</button>
+                     </form>
+                 </td>
                </tr>
                {{/each}}
             </tbody>
@@ -133,24 +101,15 @@
 
       <script>
       var modal = document.getElementById("myModal");
-      var modal2 = document.getElementById("myModal2");
-
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
-      var btn2 = document.getElementsByClassName("myBtns");
-
+      
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-      var span2 = document.getElementsByClassName("close2")[0];
-
-
+     
       // When the user clicks the button, open the modal
       btn.onclick = function() {
-        modal.style.display = "block";
-      }
-
-      btn2.onclick = function() {
         modal.style.display = "block";
       }
 
@@ -162,10 +121,7 @@
       span.onclick = function() {
         modal.style.display = "none";
       }
-      span2.onclick = function() {
-        modal.style.display = "none";
-      }
-
+     
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {

@@ -4,7 +4,7 @@
       <!-- meta charset -->
       <title>PokeTrade</title>
       <!-- title tag -->
-      <link rel="stylesheet" href="./style.css" />
+      <link rel="stylesheet" href="style.css" />
       <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Noto+Sans" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <meta charset="utf-8" />
@@ -15,65 +15,47 @@
    <body>
       <main>
          <article>
-         <h2>Users</h2>
-         <button class="button green-bg" id="myBtn">Add User</button>
+         <h2>Discord</h2>
+         <button class="button green-bg" id="myBtn">New</button>
 
          <div id="myModal" class="modal">
 
            <!-- Modal content -->
            <div class="modal-content">
              <span class="close">&times;</span>
-             <form action="/users" method="post">
-               Trainer Name:<br>
-               <input name ="Trainer" type="text"><br><br>
+             <form action="/discord" method="post">
                Discord Name:<br>
-               <select name="Discord">
-               {{#each discord}}
-                    <option>{{discord_name}}</option>
-                  {{/each}}
-               </select><br>
-               Team:<br>
-                <select name="Team">
-                  {{#each team}}
-                    <option>{{team_name}}</option>
-                  {{/each}}
-                </select><br>
+               <input type="text" name="discord_name" value=""><br><br>
                <button class="button"> Submit </button>
              </form>
            </div>
 
          </div>
-
-         <input type="text" id="offersInput" onkeyup="offersFilter()" placeholder="Search..">
-         <input type="radio" checked> Discord Name
-         <input type="radio" > Trainer Name
-         <input type="radio" > Team Name<br>
+         <input type="text" id="offersInput" onkeyup="DiscordFilter()" placeholder="Search..">
          <button class="button green-bg"> Search </button>
-         <table id="offersTable">
+
+         <table id="DiscordTable">
             <thead>
                <tr>
                   <th>Discord Name</th>
-                  <th>Trainer Name</th>
-                  <th>Team Name</th>
                   <th>Edit</th>
+                  <th>Delete</th>
                </tr>
             </thead>
             <tbody>
-               {{#each users}}
+               {{#each discord}}
                <tr>
-               <td>{{discord_name}}</td>
-               <td>{{trainer_name}}</td>
-               <td>{{team_name}}</td>
-               <td>edit</td>
+                 <td>{{discord_name}}</td>
+                 <td><a href="/pokedex/{{id}}" >edit</a></td>
+                 <td><button onclick="deletePokemon({{id}})">delete</button>
                </tr>
                {{/each}}
             </tbody>
          </table>
-         <article>
+       </article>
       </main>
 
       <script>
-      // Get the modal
       var modal = document.getElementById("myModal");
       var modal2 = document.getElementById("myModal2");
 

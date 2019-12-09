@@ -4,7 +4,7 @@
       <!-- meta charset -->
       <title>PokeTrade</title>
       <!-- title tag -->
-      <link rel="stylesheet" href="./style.css" />
+      <link rel="stylesheet" href="style.css" />
       <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Noto+Sans" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <meta charset="utf-8" />
@@ -13,81 +13,30 @@
       <!-- scripts -->
    </head>
    <body>
-      <header>
-         <h1>
-         PokeTrader
-      </header>
-      <nav id="articles">
-         <ul>
-           <li>
-              <a class="white-bg darkbrown boxshadow" href="/">
-              Home
-              </a>
-           </li>
-           <li>
-              <a class="green-bg white boxshadow" href="offer">
-              Offering
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="accept">
-              Accepting
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="users">
-              Users
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="pokedex">
-              Pokedex
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="teams">
-              Teams
-              </a>
-           </li>
-            <!--<li><a class="lightbrown-bg black boxshadow" href="<?php echo $sitepath; ?>topic-folder-e/index.php">Menu item</a></li> -->
-         </ul>
-      </nav>
       <main>
          <article>
          <h2>Teams</h2>
-         <button class="button green-bg" id="myBtn">Add</button>
+         <button class="button green-bg" id="myBtn">New</button>
 
          <div id="myModal" class="modal">
 
            <!-- Modal content -->
            <div class="modal-content">
              <span class="close">&times;</span>
-             <form>
+             <form action="/teams" method="post">
                Team Name:<br>
-               <input type="text" name="firstname" value=""><br><br>
-               <button class="button"> Add </button>
+               <input type="text" name="team_name" value=""><br><br>
+               Team Color:<br>
+               <input type="text" name="team_color" value=""><br><br>
+               <button class="button"> Submit </button>
              </form>
            </div>
 
          </div>
+         <input type="text" id="offersInput" onkeyup="TeamFilter()" placeholder="Search..">
+         <button class="button green-bg"> Search </button>
 
-         <div id="myModal2" class="modal2">
-
-           <!-- Modal content -->
-           <div class="modal-content">
-             <span class="close">&times;</span>
-             <form>
-               Team Name:<br>
-               <input type="text" name="firstname" value=""><br><br>
-               <button class="button"> Add </button>
-               <button class="button"> Remove </button>
-
-             </form>
-           </div>
-
-         </div>
-
-         <table id="PokedexTable">
+         <table id="TeamTable">
             <thead>
                <tr>
                   <th>Team Name</th>
@@ -108,29 +57,15 @@
 
       <script>
       var modal = document.getElementById("myModal");
-      var modal2 = document.getElementById("myModal2");
-
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
-      var btn2 = document.getElementsByClassName("myBtns");
-
+     
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-      var span2 = document.getElementsByClassName("close2")[0];
-
-      span2.onclick = function() {
-        modal.style.display = "none";
-        modal2.style.display = "none";
-      }
-
-
+    
       // When the user clicks the button, open the modal
       btn.onclick = function() {
-        modal.style.display = "block";
-      }
-
-      btn2.onclick = function() {
         modal.style.display = "block";
       }
 
@@ -142,14 +77,13 @@
       span.onclick = function() {
         modal.style.display = "none";
       }
-      span2.onclick = function() {
-        modal.style.display = "none";
-      }
-
+   
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
+        if (event.target == modal) {
           modal.style.display = "none";
           modal2.style.display = "none";
+        }
       }
 
 

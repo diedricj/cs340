@@ -13,45 +13,6 @@
       <!-- scripts -->
    </head>
    <body>
-      <header>
-         <h1>
-         PokeTrader
-      </header>
-      <nav id="articles">
-         <ul>
-           <li>
-              <a class="white-bg darkbrown boxshadow" href="/">
-              Home
-              </a>
-           </li>
-           <li>
-              <a class="green-bg white boxshadow" href="offer">
-              Offering
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="accept">
-              Accepting
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="users">
-              Users
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="pokedex">
-              Pokedex
-              </a>
-           </li>
-           <li>
-              <a class="black-bg white boxshadow" href="teams">
-              Teams
-              </a>
-           </li>
-            <!--<li><a class="lightbrown-bg black boxshadow" href="<?php echo $sitepath; ?>topic-folder-e/index.php">Menu item</a></li> -->
-         </ul>
-      </nav>
       <main>
          <article>
          <h2>Offering</h2>
@@ -63,38 +24,38 @@
            <div class="modal-content">
              <span class="close">&times;</span>
              <form action="/offer" method="post">
-               Pokemon Name:<br>
-               <input type="text" name="pokemon_name" value=""><br><br>
-               Trainer Name:<br>
-               <input type="text" name="trainer_name" value=""><br><br>
-               Discord Name:<br>
-               <input type="text" name="discord_name" value=""><br><br>
-
-               Team: <select name="team">
-                  <option value="1">Mystic</option>
-                  <option value="2">Valor</option>
-                  <option value="3">Instinct</option>
-               </select><br> <br>
+               Trainer Name: <select name="trainer_name">
+                 {{#each trainer}}
+                      <option>{{trainer_name}}</option>
+                    {{/each}}
+                 </select><br><br>
+               Pokemon Name: <select name="pokemon_name">
+               {{#each pokemon}}
+                    <option>{{pokemon_name}}</option>
+                  {{/each}}
+               </select><br><br>
                Shiny: <select name="shiny">
                   <option value="1">Yes</option>
                   <option value="0">No</option>
                </select><br> <br>
-               Regional: <select name="regional">
+               Special: <select name="special">
                   <option value="1">Yes</option>
                   <option value="0">No</option>
                </select><br> <br>
 
-               <button class="button"> Submit </button>
+               <button class="button" name = "add" value = "add"> Submit </button>
              </form>
            </div>
 
          </div>
+         <form action="/offer" method="post">
+           <input type="text" id="searchInput" name= "searchInput" placeholder="Search.." value ="">
+           <input type="radio" name="searchType" value="pokedex.pokemon_name" checked> Pokemon
+           <input type="radio" name="searchType" value="trainer.trainer_name"> Trainer
+           <input type="radio" name="searchType" value="discord.discord_name"> Discord<br>
+           <button class="button green-bg" name = "search" value = "search"> Search </button>
+         </form>
 
-         <input type="text" id="offersInput" onkeyup="offersFilter()" placeholder="Search..">
-         <input type="radio" name="gender" value="male" checked> Pokemon
-         <input type="radio" name="gender" value="female"> Trainer
-         <input type="radio" name="gender" value="other"> Discord<br>
-         <button class="button green-bg"> Search </button>
          <table id="offersTable">
             <thead>
                <tr>
@@ -102,8 +63,9 @@
                   <th>Discord Name</th>
                   <th>Trainer Name</th>
                   <th>Shiny</th>
-                  <th>Regional</th>
+                  <th>Special</th>
                   <th>Edit</th>
+                  <th>Remove</th>
                </tr>
             </thead>
             <tbody>
@@ -112,8 +74,8 @@
                  <td>{{pokemon_name}}</td>
                  <td>{{discord_name}}</td>
                  <td>{{trainer_name}}</td>
-                 <td>{{#if shiny}} true {{else}} false {{/if}}</td>
-                 <td>{{#if regional}} true {{else}} false {{/if}}</td>
+                 <td>{{#if shiny}} Yes {{else}} No {{/if}}</td>
+                 <td>{{#if special}} Yes {{else}} No {{/if}}</td>
                  <td><a href="/offer/{{trainer_id}}/{{pokemon_id}}"> edit </a></td>
                  <td><button onclick="deleteOffer({{pokemon_id}}, {{trainer_id}})"> delete </button>
                </tr>
@@ -126,24 +88,15 @@
       <script>
       // Get the modal
       var modal = document.getElementById("myModal");
-      var modal2 = document.getElementById("myModal2");
-
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
-      var btn2 = document.getElementsByClassName("myBtns");
-
+      
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-      var span2 = document.getElementsByClassName("close2")[0];
-
-
+      
       // When the user clicks the button, open the modal
       btn.onclick = function() {
-        modal.style.display = "block";
-      }
-
-      btn2.onclick = function() {
         modal.style.display = "block";
       }
 
@@ -155,10 +108,7 @@
       span.onclick = function() {
         modal.style.display = "none";
       }
-      span2.onclick = function() {
-        modal.style.display = "none";
-      }
-
+      
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
