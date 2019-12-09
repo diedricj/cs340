@@ -35,5 +35,22 @@ module.exports = function(){
         }
     });
 
+    router.post('/', function(req, res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO team (team_name, team_color) VALUES ('" + req.body.team_name + "', '" + req.body.team_color + "');";
+        console.log(sql);
+        var inserts = [req.body.team_name, req.body.team_color];
+        sql = mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/teams');
+            }
+        });
+    });
+
     return router;
 }();
