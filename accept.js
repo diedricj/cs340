@@ -5,7 +5,7 @@ module.exports = function(){
 
     function getAccepts(res, mysql, context, complete){
         //mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
-        mysql.pool.query("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id ORDER BY pokedex.dex_id", function(error, results, fields){
+        mysql.pool.query("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, pokedex.special, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id ORDER BY pokedex.dex_id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,9 +16,9 @@ module.exports = function(){
     }
 
     function getAccept(res, mysql, context, tid, pid, complete){
-      console.log("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id WHERE trainer_id = " + tid + " AND pokemon_id = " + pid);
+      console.log("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, pokedex.special, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id WHERE trainer_id = " + tid + " AND pokemon_id = " + pid);
         //mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
-        mysql.pool.query("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id WHERE trainer_id = " + tid + " AND pokemon_id = " + pid, function(error, results, fields){
+        mysql.pool.query("SELECT pokedex.pokemon_name, discord.discord_name, trainer.trainer_name, pokedex.shiny, pokedex.regional, pokedex.special, accepting.trainer_id, accepting.pokemon_id FROM pokedex JOIN accepting on accepting.pokemon_id = pokedex.id LEFT JOIN trainer on trainer.id = accepting.trainer_id LEFT JOIN discord on discord.id = trainer.discord_id WHERE trainer_id = " + tid + " AND pokemon_id = " + pid, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -81,15 +81,17 @@ module.exports = function(){
         console.log(req.params);
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateaccept.js"];
+        context.jsscripts = ["selectedplanet.js", "updateaccept.js", "selectoptions.js"];
         var mysql = req.app.get('mysql');
         getAccept(res, mysql, context, req.params.tid, req.params.pid, complete);
+        getTrainer(res, mysql, context, complete);
+        getPokemon(res, mysql, context, complete);
         //getPlanets(res, mysql, context, complete);
         function complete(){
             console.log("accept");
             console.log(context.accept);
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('update-accept', context);
             }
 
@@ -120,7 +122,7 @@ module.exports = function(){
         console.log(req.body)
 
         console.log("THPSE WERE PARAMS")
-        var sql = "UPDATE accepting set trainer_id = (SELECT trainer.id from trainer WHERE trainer.trainer_name = '" + req.body.trainer_name + "'), pokemon_id = (SELECT pokedex.id from pokedex where pokedex.pokemon_name = '" + req.body.pokemon_name + "' AND pokedex.regional = " + req.body.regional + " AND pokedex.shiny = " + req.body.shiny + " AND pokedex.special = 0) WHERE trainer_id = " + req.params.tid + " AND pokemon_id = " + req.params.pid;
+        var sql = "UPDATE accepting set trainer_id = (SELECT trainer.id from trainer WHERE trainer.trainer_name = '" + req.body.trainer_name + "'), pokemon_id = (SELECT pokedex.id from pokedex where pokedex.pokemon_name = '" + req.body.pokemon_name + "' AND pokedex.regional = " + req.body.regional + " AND pokedex.shiny = " + req.body.shiny + " AND pokedex.special = " + req.body.special + ") WHERE trainer_id = " + req.params.tid + " AND pokemon_id = " + req.params.pid;
         console.log(sql);
         sql = mysql.pool.query(sql,function(error, results, fields){
             if(error){
@@ -143,7 +145,9 @@ module.exports = function(){
          req.body.trainer_name + "'), (SELECT pokedex.id FROM pokedex WHERE pokedex.pokemon_name = '" +
          req.body.pokemon_name + "' and pokedex.special = " +
          req.body.special + " and pokedex.shiny = " +
-         req.body.shiny + "));";
+         req.body.shiny + " and pokedex.regional = " +
+         req.body.regional +
+         "));";
          console.log(sql);
         var inserts = [req.body.trainer_name, req.body.pokemon_name, req.body.shiny, req.body.special];
         sql = mysql.pool.query(sql, function(error, results, fields){

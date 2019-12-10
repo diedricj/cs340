@@ -1,8 +1,8 @@
 function updateAccept(pid, tid){
     $.ajax({
-        url: '/offer/' + pid + "/" + tid,
+        url: '/accept/' + pid + "/" + tid,
         type: 'PUT',
-        data: $('#update-offer').serialize(),
+        data: $('#update-accept').serialize(),
         success: function(result){
             window.location.replace("/accept");
         }

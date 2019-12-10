@@ -42,6 +42,10 @@
                   <option value="1">Yes</option>
                   <option value="0">No</option>
                </select><br> <br>
+               Regional: <select name="regional">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+               </select><br> <br>
 
                <button class="button"> Submit </button>
              </form>
@@ -61,6 +65,7 @@
                   <th>Discord Name</th>
                   <th>Trainer Name</th>
                   <th>Shiny</th>
+                  <th>Special</th>
                   <th>Regional</th>
                   <th>Edit</th>
                   <th>Remove</th>
@@ -73,6 +78,7 @@
                  <td>{{discord_name}}</td>
                  <td>{{trainer_name}}</td>
                  <td>{{#if shiny}} Yes {{else}} No {{/if}}</td>
+                 <td>{{#if special}} Yes {{else}} No {{/if}}</td>
                  <td>{{#if regional}} Yes {{else}} No {{/if}}</td>
                  <td><a href="/accept/{{trainer_id}}/{{pokemon_id}}"> edit </a></td>
                  <td><button onclick="deleteAccept({{pokemon_id}}, {{trainer_id}})"> delete </button>

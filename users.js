@@ -4,7 +4,7 @@ module.exports = function(){
 
 
     function getUsers(res, mysql, context, complete){
-            mysql.pool.query("SELECT discord.discord_name, trainer.trainer_name, team.team_name FROM trainer JOIN discord on discord.id = trainer.discord_id JOIN team on trainer.team_id = team.id", function(error, results, fields){
+            mysql.pool.query("SELECT discord.discord_name, trainer.trainer_name, team.team_name, trainer.id FROM trainer JOIN discord on discord.id = trainer.discord_id JOIN team on trainer.team_id = team.id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -36,6 +36,18 @@ module.exports = function(){
         });
     }
 
+    function getUser(res, mysql, context, id, complete){
+        //mysql.pool.query("SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id", function(error, results, fields){
+        mysql.pool.query("SELECT trainer.trainer_name, team.team_name from trainer join team on team.id = trainer.team_id where trainer.id =" + id, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.user = results[0];
+            complete();
+        });
+    }
+
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
     router.get('/', function(req, res){
@@ -55,6 +67,25 @@ module.exports = function(){
         }
     });
 
+    router.get('/:id', function(req, res){
+        console.log(req.params);
+        console.log("IM IN THE UPDATE");
+        callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["selectedplanet.js", "updateoffer.js", "selectoptions.js", "updatepokedex.js"];
+        var mysql = req.app.get('mysql');
+        getUser(res, mysql, context, req.params.id, complete);
+        getTeams(res, mysql, context, complete);
+        //getPlanets(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('update-users', context);
+            }
+
+        }
+    });
+
     router.post('/', function(req, res){
         console.log("im in ur post")
         console.log(req.body)
@@ -68,7 +99,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/pokedex');
+                res.redirect('/users');
             }
         });
     });
