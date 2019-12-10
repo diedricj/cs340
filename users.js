@@ -87,22 +87,51 @@ module.exports = function(){
     });
 
     router.post('/', function(req, res){
-        console.log("im in ur post")
-        console.log(req.body)
-        var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO trainer (trainer_name, discord_id, team_id) VALUES ('" + req.body.Trainer + "', (SELECT discord.id FROM discord WHERE discord.discord_name = '" + req.body.Discord + "'), (SELECT team.id FROM team WHERE team.team_name = '" + req.body.Team + "') );";
-         console.log(sql);
-        var inserts = [req.body.trainer_name, req.body.pokemon_name, req.body.shiny, req.body.regional];
-        sql = mysql.pool.query(sql, function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
+        if (req.body['add']){
+            var mysql = req.app.get('mysql');
+            var sql = "INSERT INTO trainer (trainer_name, discord_id, team_id) VALUES ('" + req.body.Trainer + "', (SELECT discord.id FROM discord WHERE discord.discord_name = '" + req.body.Discord + "'), (SELECT team.id FROM team WHERE team.team_name = '" + req.body.Team + "') );";
+             console.log(sql);
+            var inserts = [req.body.trainer_name, req.body.pokemon_name, req.body.shiny, req.body.regional];
+            sql = mysql.pool.query(sql, function(error, results, fields){
+                if(error){
+                    console.log(JSON.stringify(error))
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }else{
+                    res.redirect('/pokedex');
+                }
+            });
+        }else if (req.body['search']){
+            console.log("User Search");
+            var callbackCount = 0;
+            var context = {};
+            context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js", "deleteoffer.js"];
+            var mysql = req.app.get('mysql');
+            var sql = "SELECT discord.discord_name, trainer.trainer_name, team.team_name FROM trainer JOIN discord on discord.id = trainer.discord_id JOIN team on trainer.team_id = team.id WHERE " +
+            req.body.searchType + " = '" + req.body.searchInput + "' ORDER BY discord.discord_name;";
+            sql = mysql.pool.query(sql, function(error, results, fields){
+                if(error){
                 res.write(JSON.stringify(error));
                 res.end();
+<<<<<<< HEAD
+=======
             }else{
                 res.redirect('/users');
+>>>>>>> edaa1d425d247521d6dadd8adc93d03498b77056
             }
-        });
-    });
+            context.users = results;
+            })
+            console.log(context);
+            getTeams(res, mysql, context, complete);
+            getDiscord(res, mysql, context, complete);
+            function complete(){
+                callbackCount++;
+                if(callbackCount >= 2){
+                    res.render('users', context);
+                }
 
+            }
+            }
+    });
     return router;
 }();
