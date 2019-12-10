@@ -34,7 +34,7 @@
                </select><br> <br>
                Regional: <select name="regional">
                   <option value="0">No</option>
-                  <option value="1">Yes</option>                 
+                  <option value="1">Yes</option>
                </select><br> <br>
                Special: <select name="special">
                   <option value="0">No</option>
@@ -80,7 +80,6 @@
             <tbody>
                {{#each pokemon}}
                <tr>
-                 <td>{{id}}</td>
                  <td>{{dex_id}}</td>
                  <td>{{pokemon_name}}</td>
                  <td>{{regional}}</td>
@@ -104,10 +103,10 @@
 
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
-      
+
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-     
+
       // When the user clicks the button, open the modal
       btn.onclick = function() {
         modal.style.display = "block";
@@ -121,7 +120,7 @@
       span.onclick = function() {
         modal.style.display = "none";
       }
-     
+
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {

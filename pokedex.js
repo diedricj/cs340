@@ -126,7 +126,7 @@ module.exports = function(){
         console.log("im in ur post")
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO pokedex (dex_id, pokemon_name, shiny, regional, special) VALUES ('" + req.body.dex_id + ", " + req.body.pokemon_name + "', " + req.body.regional + ", " + req.body.shiny + ", " + req.body.special + ");";
+        var sql = "INSERT INTO pokedex (dex_id, pokemon_name, shiny, regional, special) VALUES (" + req.body.dex_id + ", '" + req.body.pokemon_name + "', " + req.body.regional + ", " + req.body.shiny + ", " + req.body.special + ");";
          console.log(sql);
         var inserts = [req.body.trainer_name, req.body.pokemon_name, req.body.shiny, req.body.regional];
         sql = mysql.pool.query(sql, function(error, results, fields){
